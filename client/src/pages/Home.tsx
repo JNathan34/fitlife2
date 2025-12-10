@@ -10,13 +10,21 @@ import heroImage from "@assets/generated_images/dark_moody_gym_atmosphere_with_n
 
 export default function Home() {
   const [quoteIndex, setQuoteIndex] = useState(0);
+  const [tipsOffset, setTipsOffset] = useState(0);
   
   useEffect(() => {
     // Rotate quotes every time component mounts or just pick random
     setQuoteIndex(Math.floor(Math.random() * QUOTES.length));
+    // Randomize tips start
+    setTipsOffset(Math.floor(Math.random() * (WELLNESS_TIPS.length - 4)));
   }, []);
 
+  const rotateTips = () => {
+    setTipsOffset((prev) => (prev + 4) % WELLNESS_TIPS.length);
+  };
+
   const featuredWorkout = WORKOUTS[0];
+  const visibleTips = [...WELLNESS_TIPS, ...WELLNESS_TIPS].slice(tipsOffset, tipsOffset + 4);
 
   return (
     <div className="space-y-8 pb-10">
@@ -51,7 +59,7 @@ export default function Home() {
               </Button>
             </Link>
             <Link href="/meals">
-              <Button size="lg" variant="outline" className="h-14 px-8 text-lg font-bold uppercase tracking-wide bg-white/10 hover:bg-white/20 border-white/20 text-white backdrop-blur-md rounded-full">
+              <Button size="lg" variant="secondary" className="h-14 px-8 text-lg font-bold uppercase tracking-wide bg-background/80 hover:bg-background text-foreground backdrop-blur-md rounded-full border border-white/10 shadow-lg">
                 View Meal Plan
               </Button>
             </Link>
@@ -147,12 +155,14 @@ export default function Home() {
       <section>
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl font-heading font-bold text-foreground">Wellness Tips</h2>
-          <Button variant="link" className="text-muted-foreground hover:text-foreground">View All</Button>
+          <Button variant="outline" onClick={rotateTips} className="gap-2">
+            <Activity className="h-4 w-4" /> New Tips
+          </Button>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {WELLNESS_TIPS.map((tip) => (
-            <Card key={tip.id} className="bg-card border-border hover:bg-card/80 transition-colors">
+          {visibleTips.map((tip, i) => (
+            <Card key={`${tip.id}-${i}`} className="bg-card border-border hover:bg-card/80 transition-colors animate-in fade-in slide-in-from-bottom-4 duration-500">
               <CardContent className="p-6">
                 <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center mb-4 text-primary">
                   <Activity className="h-5 w-5" />

@@ -345,5 +345,13 @@ export const WELLNESS_TIPS = [
   { id: 1, title: 'Digital Detox', content: 'Turn off screens 1h before bed.', category: 'Mental' },
   { id: 2, title: 'Hydration', content: 'Drink water upon waking.', category: 'Physical' },
   { id: 3, title: 'Box Breathing', content: 'In 4s, Hold 4s, Out 4s.', category: 'Stress' },
-  { id: 4, title: 'Gratitude', content: 'Write 3 things you are thankful for.', category: 'Mental' }
+  { id: 4, title: 'Gratitude', content: 'Write 3 things you are thankful for.', category: 'Mental' },
+  { id: 5, title: 'Cold Shower', content: 'Finish your shower with 30s of cold water.', category: 'Physical' },
+  { id: 6, title: 'Sunlight', content: 'Get 10 minutes of morning sun exposure.', category: 'Physical' },
+  { id: 7, title: 'Reading', content: 'Read 10 pages of a book daily.', category: 'Mental' },
+  { id: 8, title: 'Stretching', content: 'Stretch for 5 minutes every hour of sitting.', category: 'Physical' },
+  { id: 9, title: 'Journaling', content: 'Write down your thoughts to clear your mind.', category: 'Mental' },
+  { id: 10, title: 'Meditation', content: 'Sit in silence for 5 minutes.', category: 'Mental' },
+  { id: 11, title: 'Meal Prep', content: 'Prepare healthy snacks for the week.', category: 'Nutrition' },
+  { id: 12, title: 'Socialize', content: 'Call a friend or family member.', category: 'Social' }
 ];
