@@ -59,14 +59,14 @@ export default function Tracker() {
     <div className="space-y-8">
       <div className="flex items-end justify-between">
         <div>
-          <h1 className="text-4xl font-heading font-bold text-white mb-2">Progress Tracker</h1>
+          <h1 className="text-4xl font-heading font-bold text-foreground mb-2">Progress Tracker</h1>
           <p className="text-muted-foreground">Visualize your journey.</p>
         </div>
         <div className="flex gap-2">
-           <Button onClick={() => { setInputType('steps'); setInputOpen(true); }} variant="outline" className="gap-2">
+           <Button onClick={() => { setInputType('steps'); setInputOpen(true); }} variant="outline" className="gap-2 border-border">
              <Activity className="h-4 w-4" /> Log Steps
            </Button>
-           <Button onClick={() => { setInputType('weight'); setInputOpen(true); }} variant="outline" className="gap-2">
+           <Button onClick={() => { setInputType('weight'); setInputOpen(true); }} variant="outline" className="gap-2 border-border">
              <Scale className="h-4 w-4" /> Log Weight
            </Button>
         </div>
@@ -74,7 +74,7 @@ export default function Tracker() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Main Chart - Steps & Calories */}
-        <Card className="lg:col-span-2 bg-card border-white/5">
+        <Card className="lg:col-span-2 bg-card border-border">
           <CardHeader>
             <CardTitle>Weekly Activity</CardTitle>
           </CardHeader>
@@ -82,12 +82,12 @@ export default function Tracker() {
             <div className="h-[300px] w-full">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={chartData}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
-                  <XAxis dataKey="name" stroke="#888888" fontSize={12} tickLine={false} axisLine={false} />
-                  <YAxis stroke="#888888" fontSize={12} tickLine={false} axisLine={false} />
+                  <CartesianGrid strokeDasharray="3 3" stroke="currentColor" className="text-muted/20" vertical={false} />
+                  <XAxis dataKey="name" stroke="currentColor" className="text-muted-foreground" fontSize={12} tickLine={false} axisLine={false} />
+                  <YAxis stroke="currentColor" className="text-muted-foreground" fontSize={12} tickLine={false} axisLine={false} />
                   <Tooltip 
-                    contentStyle={{ backgroundColor: '#1f2937', border: 'none', borderRadius: '8px', color: '#fff' }}
-                    cursor={{ fill: 'rgba(255,255,255,0.05)' }}
+                    contentStyle={{ backgroundColor: 'hsl(var(--card))', borderColor: 'hsl(var(--border))', borderRadius: '8px', color: 'hsl(var(--foreground))' }}
+                    cursor={{ fill: 'hsl(var(--muted)/0.2)' }}
                   />
                   <Bar dataKey="steps" name="Steps" fill="hsl(var(--primary))" radius={[4, 4, 0, 0]} />
                   <Bar dataKey="calories" name="Calories" fill="hsl(var(--destructive))" radius={[4, 4, 0, 0]} />
@@ -100,25 +100,25 @@ export default function Tracker() {
         {/* Stats Column */}
         <div className="space-y-6">
           {/* Water Tracker */}
-          <Card className="bg-blue-950/20 border-blue-900/50 relative overflow-hidden">
+          <Card className="bg-blue-50 dark:bg-blue-950/20 border-blue-200 dark:border-blue-900/50 relative overflow-hidden">
             <div className="absolute inset-0 bg-blue-500/5 animate-pulse" />
             <CardContent className="p-6 text-center relative z-10">
-               <div className="mx-auto bg-blue-500/20 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-4 text-blue-400">
+               <div className="mx-auto bg-blue-500/20 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-4 text-blue-500 dark:text-blue-400">
                  <Droplets className="h-8 w-8" />
                </div>
-               <h3 className="text-2xl font-bold text-white mb-1">{currentStats.water?.toFixed(1) || 0} <span className="text-sm font-normal text-muted-foreground">/ 3.0 L</span></h3>
-               <p className="text-xs text-blue-300 mb-4">Daily Hydration</p>
+               <h3 className="text-2xl font-bold text-foreground mb-1">{currentStats.water?.toFixed(1) || 0} <span className="text-sm font-normal text-muted-foreground">/ 3.0 L</span></h3>
+               <p className="text-xs text-blue-600 dark:text-blue-300 mb-4">Daily Hydration</p>
                
-               <Progress value={((currentStats.water || 0) / 3) * 100} className="h-2 bg-blue-950 mb-6" />
+               <Progress value={((currentStats.water || 0) / 3) * 100} className="h-2 bg-blue-200 dark:bg-blue-950 mb-6" />
                
                <div className="flex justify-center gap-2">
-                 <Button size="sm" variant="outline" className="h-8 border-blue-800 hover:bg-blue-900 text-blue-300" onClick={() => {
+                 <Button size="sm" variant="outline" className="h-8 border-blue-300 dark:border-blue-800 hover:bg-blue-100 dark:hover:bg-blue-900 text-blue-600 dark:text-blue-300" onClick={() => {
                    setTrackerData({ ...trackerData, [today]: { ...currentStats, water: (currentStats.water || 0) + 0.25 } });
                    toast({ title: "Hydrated!" });
                  }}>
                    <Plus className="h-3 w-3 mr-1" /> 250ml
                  </Button>
-                 <Button size="sm" variant="outline" className="h-8 border-blue-800 hover:bg-blue-900 text-blue-300" onClick={() => {
+                 <Button size="sm" variant="outline" className="h-8 border-blue-300 dark:border-blue-800 hover:bg-blue-100 dark:hover:bg-blue-900 text-blue-600 dark:text-blue-300" onClick={() => {
                    setTrackerData({ ...trackerData, [today]: { ...currentStats, water: (currentStats.water || 0) + 0.5 } });
                    toast({ title: "Hydrated!" });
                  }}>
@@ -129,7 +129,7 @@ export default function Tracker() {
           </Card>
 
           {/* Weight Widget */}
-          <Card className="bg-card border-white/5">
+          <Card className="bg-card border-border">
              <CardHeader>
                <CardTitle className="text-sm font-medium">Weight History</CardTitle>
              </CardHeader>
@@ -140,7 +140,7 @@ export default function Tracker() {
                       <XAxis dataKey="name" hide />
                       <YAxis domain={['auto', 'auto']} hide />
                       <Tooltip 
-                        contentStyle={{ backgroundColor: '#1f2937', border: 'none', borderRadius: '8px', color: '#fff' }}
+                        contentStyle={{ backgroundColor: 'hsl(var(--card))', borderColor: 'hsl(var(--border))', borderRadius: '8px', color: 'hsl(var(--foreground))' }}
                       />
                       <Line type="monotone" dataKey="weight" stroke="hsl(var(--primary))" strokeWidth={2} dot={{ r: 4, fill: "hsl(var(--primary))" }} />
                     </LineChart>
@@ -153,7 +153,7 @@ export default function Tracker() {
 
       {/* Input Modal */}
       <Dialog open={inputOpen} onOpenChange={setInputOpen}>
-        <DialogContent className="bg-card border-white/10 text-white">
+        <DialogContent className="bg-card border-border text-foreground">
           <DialogHeader>
             <DialogTitle className="capitalize">Log {inputType}</DialogTitle>
           </DialogHeader>
@@ -165,7 +165,7 @@ export default function Tracker() {
                 placeholder={inputType === 'steps' ? "e.g. 5000" : inputType === 'weight' ? "e.g. 75.5" : "e.g. 0.5"}
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
-                className="bg-background border-white/10"
+                className="bg-background border-border"
               />
               <p className="text-xs text-muted-foreground">
                 {inputType === 'steps' ? "Steps walked" : inputType === 'weight' ? "Current weight in kg" : "Water in Liters"}

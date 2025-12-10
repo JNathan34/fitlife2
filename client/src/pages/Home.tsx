@@ -64,17 +64,17 @@ export default function Home() {
         {[
           { label: "Workouts", value: "12", sub: "This month", icon: Flame, color: "text-orange-500" },
           { label: "Calories", value: "14.5k", sub: "Burned total", icon: Activity, color: "text-red-500" },
-          { label: "Active Days", value: "5", sub: "Current streak", icon: Trophy, color: "text-yellow-400" },
-          { label: "Water", value: "1.2L", sub: "Today", icon: Droplets, color: "text-blue-400" },
+          { label: "Active Days", value: "5", sub: "Current streak", icon: Trophy, color: "text-yellow-500" },
+          { label: "Water", value: "1.2L", sub: "Today", icon: Droplets, color: "text-blue-500" },
         ].map((stat, i) => (
-          <Card key={i} className="bg-card/50 backdrop-blur-sm border-white/5 hover:border-primary/30 transition-colors group">
+          <Card key={i} className="bg-card/50 backdrop-blur-sm border-border hover:border-primary/30 transition-colors group">
             <CardContent className="p-6 flex flex-col items-center text-center md:items-start md:text-left">
-              <div className={`p-3 rounded-2xl bg-white/5 mb-4 group-hover:bg-white/10 transition-colors ${stat.color}`}>
+              <div className={`p-3 rounded-2xl bg-muted mb-4 group-hover:bg-muted/80 transition-colors ${stat.color}`}>
                 <stat.icon className="h-6 w-6" />
               </div>
-              <h3 className="text-3xl font-heading font-bold text-white mb-1">{stat.value}</h3>
+              <h3 className="text-3xl font-heading font-bold text-foreground mb-1">{stat.value}</h3>
               <p className="text-sm font-medium text-muted-foreground uppercase tracking-wide text-[10px]">{stat.label}</p>
-              <p className="text-xs text-white/40 mt-1">{stat.sub}</p>
+              <p className="text-xs text-muted-foreground/60 mt-1">{stat.sub}</p>
             </CardContent>
           </Card>
         ))}
@@ -82,7 +82,7 @@ export default function Home() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Motivation Widget */}
-        <Card className="lg:col-span-2 border-white/5 bg-gradient-to-br from-card to-card/50 relative overflow-hidden">
+        <Card className="lg:col-span-2 border-border bg-gradient-to-br from-card to-card/50 relative overflow-hidden">
           <div className="absolute top-0 right-0 p-32 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
@@ -91,7 +91,7 @@ export default function Home() {
             </CardTitle>
           </CardHeader>
           <CardContent className="relative z-10">
-            <blockquote className="text-2xl md:text-3xl font-heading font-medium text-white leading-tight mb-6">
+            <blockquote className="text-2xl md:text-3xl font-heading font-medium text-foreground leading-tight mb-6">
               "{QUOTES[quoteIndex]}"
             </blockquote>
             <div className="flex items-center justify-between">
@@ -110,7 +110,7 @@ export default function Home() {
         </Card>
 
         {/* Quick Action: Random Workout */}
-        <Card className="border-white/5 bg-zinc-900/50 group cursor-pointer hover:border-primary/50 transition-all relative overflow-hidden">
+        <Card className="border-border bg-card group cursor-pointer hover:border-primary/50 transition-all relative overflow-hidden">
            <div className="absolute inset-0 bg-[url('/assets/placeholders/noise.png')] opacity-5 pointer-events-none" />
            <img 
               src={featuredWorkout.thumbnail} 
@@ -122,21 +122,21 @@ export default function Home() {
            
            <CardContent className="relative z-10 h-full flex flex-col justify-end p-6">
              <div className="mb-auto pt-4">
-                <span className="px-2 py-1 rounded bg-white/10 backdrop-blur text-[10px] uppercase font-bold text-white border border-white/10">
+                <span className="px-2 py-1 rounded bg-background/50 backdrop-blur text-[10px] uppercase font-bold text-foreground border border-border">
                   Featured
                 </span>
              </div>
              
-             <h3 className="text-xl font-heading font-bold text-white mb-2 line-clamp-2">
+             <h3 className="text-xl font-heading font-bold text-foreground mb-2 line-clamp-2">
                {featuredWorkout.title}
              </h3>
              
-             <div className="flex items-center gap-4 text-xs text-gray-300 mb-4">
+             <div className="flex items-center gap-4 text-xs text-muted-foreground mb-4">
                <span className="flex items-center gap-1"><Timer className="h-3 w-3" /> {featuredWorkout.durationMin}m</span>
                <span className="flex items-center gap-1"><Flame className="h-3 w-3" /> {featuredWorkout.caloriesEstimate} kcal</span>
              </div>
              
-             <Button className="w-full bg-white text-black hover:bg-white/90 font-bold">
+             <Button className="w-full bg-foreground text-background hover:bg-foreground/90 font-bold">
                <Play className="h-4 w-4 mr-2 fill-current" /> Start Now
              </Button>
            </CardContent>
@@ -146,18 +146,18 @@ export default function Home() {
       {/* Wellness Tips Row */}
       <section>
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl font-heading font-bold text-white">Wellness Tips</h2>
-          <Button variant="link" className="text-muted-foreground hover:text-white">View All</Button>
+          <h2 className="text-2xl font-heading font-bold text-foreground">Wellness Tips</h2>
+          <Button variant="link" className="text-muted-foreground hover:text-foreground">View All</Button>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {WELLNESS_TIPS.map((tip) => (
-            <Card key={tip.id} className="bg-card border-white/5 hover:bg-card/80 transition-colors">
+            <Card key={tip.id} className="bg-card border-border hover:bg-card/80 transition-colors">
               <CardContent className="p-6">
                 <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center mb-4 text-primary">
                   <Activity className="h-5 w-5" />
                 </div>
-                <h3 className="font-bold text-white mb-2">{tip.title}</h3>
+                <h3 className="font-bold text-foreground mb-2">{tip.title}</h3>
                 <p className="text-sm text-muted-foreground line-clamp-3">{tip.content}</p>
               </CardContent>
             </Card>

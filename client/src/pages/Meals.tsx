@@ -62,12 +62,12 @@ export default function Meals() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-4xl font-heading font-bold text-white mb-2">Nutrition & Meals</h1>
+        <h1 className="text-4xl font-heading font-bold text-foreground mb-2">Nutrition & Meals</h1>
         <p className="text-muted-foreground">Healthy recipes to fuel your gains.</p>
       </div>
 
       {mealPlan.length > 0 && (
-        <Card className="bg-card border-white/10">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-3">
             <div className="flex items-center justify-between">
               <CardTitle className="text-xl font-heading flex items-center gap-2">
@@ -75,10 +75,10 @@ export default function Meals() {
                 Your Meal Plan
               </CardTitle>
               <div className="flex gap-4 text-sm text-muted-foreground">
-                <span><span className="font-bold text-white">{totals.calories}</span> cal</span>
-                <span><span className="font-bold text-blue-400">{totals.protein}g</span> P</span>
-                <span><span className="font-bold text-green-400">{totals.carbs}g</span> C</span>
-                <span><span className="font-bold text-yellow-400">{totals.fat}g</span> F</span>
+                <span><span className="font-bold text-foreground">{totals.calories}</span> cal</span>
+                <span><span className="font-bold text-blue-500">{totals.protein}g</span> P</span>
+                <span><span className="font-bold text-green-500">{totals.carbs}g</span> C</span>
+                <span><span className="font-bold text-yellow-500">{totals.fat}g</span> F</span>
               </div>
             </div>
           </CardHeader>
@@ -93,7 +93,7 @@ export default function Meals() {
                 <CarouselContent>
                   {mealPlan.map((meal) => (
                     <CarouselItem key={meal.id} className="basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5">
-                      <div className="relative group bg-secondary/20 rounded-lg overflow-hidden border border-white/5 h-full">
+                      <div className="relative group bg-card rounded-lg overflow-hidden border border-border h-full">
                         <div className="h-32 w-full relative">
                           <img src={meal.image} className="w-full h-full object-cover" alt={meal.title} />
                           <button 
@@ -104,7 +104,7 @@ export default function Meals() {
                           </button>
                         </div>
                         <div className="p-3">
-                          <h4 className="font-bold text-sm truncate mb-1">{meal.title}</h4>
+                          <h4 className="font-bold text-sm truncate mb-1 text-foreground">{meal.title}</h4>
                           <div className="text-xs text-muted-foreground flex justify-between">
                             <span>{meal.calories} cal</span>
                             <span>{meal.macros.protein}g P</span>
@@ -126,7 +126,7 @@ export default function Meals() {
         {MEALS.map((meal) => (
           <Card 
             key={meal.id} 
-            className="group bg-card border-white/5 hover:border-primary/30 transition-all overflow-hidden cursor-pointer"
+            className="group bg-card border-border hover:border-primary/30 transition-all overflow-hidden cursor-pointer"
             onClick={() => setSelectedMeal(meal)}
           >
             <div className="relative aspect-square overflow-hidden">
@@ -156,7 +156,7 @@ export default function Meals() {
                    <span key={tag} className="text-[10px] px-2 py-0.5 rounded bg-secondary text-secondary-foreground font-medium uppercase">{tag}</span>
                  ))}
                </div>
-               <h3 className="font-heading font-bold text-lg text-white mb-1 line-clamp-1">{meal.title}</h3>
+               <h3 className="font-heading font-bold text-lg text-foreground mb-1 line-clamp-1">{meal.title}</h3>
                <div className="flex items-center gap-4 text-xs text-muted-foreground mt-3">
                  <span className="flex items-center gap-1"><Clock className="h-3 w-3" /> {meal.prepTimeMin}m</span>
                  <span className="flex items-center gap-1"><Flame className="h-3 w-3" /> {meal.calories}</span>
@@ -169,7 +169,7 @@ export default function Meals() {
 
       {/* Recipe Modal */}
       <Dialog open={!!selectedMeal} onOpenChange={(open) => !open && setSelectedMeal(null)}>
-        <DialogContent className="max-w-2xl bg-card border-white/10 text-white p-0 overflow-hidden">
+        <DialogContent className="max-w-2xl bg-card border-border text-foreground p-0 overflow-hidden">
           {selectedMeal && (
             <>
               <div className="relative aspect-[21/9] w-full">
@@ -180,28 +180,28 @@ export default function Meals() {
                  />
                  <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent" />
                  <div className="absolute bottom-0 left-0 p-6">
-                   <DialogTitle className="text-3xl font-heading font-bold">{selectedMeal.title}</DialogTitle>
+                   <DialogTitle className="text-3xl font-heading font-bold text-white">{selectedMeal.title}</DialogTitle>
                  </div>
               </div>
               
               <ScrollArea className="max-h-[60vh]">
                 <div className="p-6 space-y-8">
                   {/* Macros */}
-                  <div className="grid grid-cols-4 gap-4 p-4 bg-secondary/30 rounded-xl border border-white/5">
+                  <div className="grid grid-cols-4 gap-4 p-4 bg-muted/50 rounded-xl border border-border">
                     <div className="text-center">
-                      <p className="text-2xl font-bold text-white">{selectedMeal.calories}</p>
+                      <p className="text-2xl font-bold text-foreground">{selectedMeal.calories}</p>
                       <p className="text-xs text-muted-foreground uppercase">Calories</p>
                     </div>
                     <div className="text-center">
-                      <p className="text-2xl font-bold text-blue-400">{selectedMeal.macros.protein}g</p>
+                      <p className="text-2xl font-bold text-blue-500">{selectedMeal.macros.protein}g</p>
                       <p className="text-xs text-muted-foreground uppercase">Protein</p>
                     </div>
                     <div className="text-center">
-                      <p className="text-2xl font-bold text-green-400">{selectedMeal.macros.carbs}g</p>
+                      <p className="text-2xl font-bold text-green-500">{selectedMeal.macros.carbs}g</p>
                       <p className="text-xs text-muted-foreground uppercase">Carbs</p>
                     </div>
                     <div className="text-center">
-                      <p className="text-2xl font-bold text-yellow-400">{selectedMeal.macros.fat}g</p>
+                      <p className="text-2xl font-bold text-yellow-500">{selectedMeal.macros.fat}g</p>
                       <p className="text-xs text-muted-foreground uppercase">Fats</p>
                     </div>
                   </div>
@@ -213,7 +213,7 @@ export default function Meals() {
                       </h4>
                       <ul className="space-y-2">
                         {selectedMeal.ingredients.map((ing, i) => (
-                          <li key={i} className="flex items-center gap-2 text-sm text-gray-300">
+                          <li key={i} className="flex items-center gap-2 text-sm text-muted-foreground">
                             <div className="h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
                             {ing}
                           </li>
@@ -226,7 +226,7 @@ export default function Meals() {
                       </h4>
                       <ol className="space-y-4">
                         {selectedMeal.steps.map((step, i) => (
-                          <li key={i} className="flex gap-3 text-sm text-gray-300">
+                          <li key={i} className="flex gap-3 text-sm text-muted-foreground">
                             <span className="font-bold text-primary shrink-0">{i + 1}.</span>
                             {step}
                           </li>
@@ -238,7 +238,7 @@ export default function Meals() {
               </ScrollArea>
 
               <DialogFooter className="p-6 pt-0 bg-card">
-                <Button variant="outline" className="w-full border-white/10 hover:bg-white/5" onClick={() => setSelectedMeal(null)}>Close</Button>
+                <Button variant="outline" className="w-full border-border hover:bg-muted" onClick={() => setSelectedMeal(null)}>Close</Button>
                 <Button 
                   className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
                   onClick={() => selectedMeal && addToMealPlan(selectedMeal)}

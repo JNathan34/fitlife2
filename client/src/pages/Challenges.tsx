@@ -53,7 +53,7 @@ export default function Challenges() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-4xl font-heading font-bold text-white mb-2">Challenges</h1>
+        <h1 className="text-4xl font-heading font-bold text-foreground mb-2">Challenges</h1>
         <p className="text-muted-foreground">Push your limits with our curated 30-day programs.</p>
       </div>
 
@@ -65,7 +65,7 @@ export default function Challenges() {
           return (
             <Card 
               key={challenge.id} 
-              className="group bg-card border-white/5 hover:border-primary/30 transition-all cursor-pointer flex flex-col overflow-hidden"
+              className="group bg-card border-border hover:border-primary/30 transition-all cursor-pointer flex flex-col overflow-hidden"
               onClick={() => setSelectedChallenge(challenge)}
             >
               <div className="relative h-48 overflow-hidden">
@@ -78,7 +78,7 @@ export default function Challenges() {
                 <div className="absolute inset-0 bg-black/50" />
                 <div className="absolute bottom-4 left-4">
                   <h3 className="text-xl font-heading font-bold text-white">{challenge.title}</h3>
-                  <p className="text-xs text-gray-300 flex items-center gap-1">
+                  <p className="text-xs text-white/80 flex items-center gap-1">
                     <Calendar className="h-3 w-3" /> {challenge.durationDays} Days
                   </p>
                 </div>
@@ -95,12 +95,12 @@ export default function Challenges() {
                   <div className="space-y-2">
                     <div className="flex justify-between text-xs">
                       <span>Progress</span>
-                      <span className="text-white">{userProgress.completedDays.length} / {challenge.durationDays} Days</span>
+                      <span className="text-foreground">{userProgress.completedDays.length} / {challenge.durationDays} Days</span>
                     </div>
                     <Progress value={percent} className="h-1.5" />
                   </div>
                 ) : (
-                  <Button className="w-full bg-white/5 hover:bg-white/10 text-white border border-white/10">
+                  <Button className="w-full bg-secondary/50 hover:bg-secondary text-foreground border border-border">
                     View Details
                   </Button>
                 )}
@@ -112,12 +112,12 @@ export default function Challenges() {
 
       {/* Challenge Details Modal */}
       <Dialog open={!!selectedChallenge} onOpenChange={(open) => !open && setSelectedChallenge(null)}>
-        <DialogContent className="max-w-3xl bg-card border-white/10 text-white p-0 overflow-hidden h-[80vh] flex flex-col">
+        <DialogContent className="max-w-3xl bg-card border-border text-foreground p-0 overflow-hidden h-[80vh] flex flex-col">
           {selectedChallenge && (() => {
              const userProgress = progress[selectedChallenge.id];
              return (
                <>
-                 <DialogHeader className="p-6 border-b border-white/5 bg-zinc-900/50">
+                 <DialogHeader className="p-6 border-b border-border bg-muted/30">
                    <div className="flex items-center justify-between">
                      <div>
                         <DialogTitle className="text-2xl font-heading font-bold">{selectedChallenge.title}</DialogTitle>
@@ -155,12 +155,12 @@ export default function Challenges() {
                                "p-3 rounded-lg border cursor-pointer transition-all flex flex-col items-center text-center gap-2 min-h-[100px] justify-center",
                                isCompleted 
                                  ? "bg-primary/10 border-primary text-primary" 
-                                 : "bg-secondary/30 border-white/5 hover:bg-secondary/50"
+                                 : "bg-secondary/30 border-border hover:bg-secondary/50"
                              )}
                              onClick={() => toggleDay(selectedChallenge.id, dayNum)}
                            >
                              <div className="text-xs font-bold uppercase opacity-50">Day {dayNum}</div>
-                             {isCompleted ? <CheckCircle className="h-6 w-6" /> : <div className="h-6 w-6 rounded-full border-2 border-white/20" />}
+                             {isCompleted ? <CheckCircle className="h-6 w-6" /> : <div className="h-6 w-6 rounded-full border-2 border-border" />}
                              <div className="text-[10px] leading-tight text-muted-foreground">{plan}</div>
                            </div>
                          );

@@ -53,7 +53,7 @@ export default function Profile() {
   return (
     <div className="max-w-4xl mx-auto space-y-8 pb-12">
       <div className="flex items-center justify-between">
-        <h1 className="text-4xl font-heading font-bold text-white">My Profile</h1>
+        <h1 className="text-4xl font-heading font-bold text-foreground">My Profile</h1>
         <Button onClick={handleSave} className="bg-primary text-primary-foreground hover:bg-primary/90">
           <Save className="h-4 w-4 mr-2" /> Save Changes
         </Button>
@@ -62,13 +62,13 @@ export default function Profile() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {/* Avatar Column */}
         <div className="space-y-6">
-           <Card className="border-white/5 bg-card">
+           <Card className="border-border bg-card">
              <CardContent className="p-6 flex flex-col items-center text-center">
                <div 
                  className="relative mb-4 group cursor-pointer"
                  onClick={() => fileInputRef.current?.click()}
                >
-                 <div className="h-32 w-32 rounded-full bg-zinc-800 border-4 border-primary/20 overflow-hidden flex items-center justify-center">
+                 <div className="h-32 w-32 rounded-full bg-muted border-4 border-primary/20 overflow-hidden flex items-center justify-center">
                    {profile.avatarDataUrl ? (
                      <img src={profile.avatarDataUrl} alt="Profile" className="w-full h-full object-cover" />
                    ) : (
@@ -86,7 +86,7 @@ export default function Profile() {
                    onChange={handleAvatarUpload}
                  />
                </div>
-               <h2 className="text-xl font-bold text-white mb-1">{profile.name || "Guest User"}</h2>
+               <h2 className="text-xl font-bold text-foreground mb-1">{profile.name || "Guest User"}</h2>
                <p className="text-sm text-muted-foreground">{profile.goal}</p>
              </CardContent>
            </Card>
@@ -94,7 +94,7 @@ export default function Profile() {
 
         {/* Form Column */}
         <div className="md:col-span-2 space-y-6">
-          <Card className="border-white/5 bg-card">
+          <Card className="border-border bg-card">
             <CardHeader>
               <CardTitle className="text-lg flex items-center gap-2">
                 <Settings className="h-4 w-4 text-primary" /> Personal Details
@@ -107,7 +107,7 @@ export default function Profile() {
                   id="name" 
                   value={profile.name} 
                   onChange={(e) => setProfile({ ...profile, name: e.target.value })}
-                  className="bg-background border-white/10"
+                  className="bg-background border-border"
                 />
               </div>
               
@@ -117,7 +117,7 @@ export default function Profile() {
                   id="about" 
                   value={profile.about}
                   onChange={(e) => setProfile({ ...profile, about: e.target.value })}
-                  className="w-full min-h-[100px] rounded-md border border-white/10 bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                  className="w-full min-h-[100px] rounded-md border border-border bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                 />
               </div>
 
@@ -129,7 +129,7 @@ export default function Profile() {
                     type="number"
                     value={profile.height} 
                     onChange={(e) => setProfile({ ...profile, height: parseInt(e.target.value) || 0 })}
-                    className="bg-background border-white/10"
+                    className="bg-background border-border"
                   />
                 </div>
                 <div className="space-y-2">
@@ -139,7 +139,7 @@ export default function Profile() {
                     type="number"
                     value={profile.weight} 
                     onChange={(e) => setProfile({ ...profile, weight: parseInt(e.target.value) || 0 })}
-                    className="bg-background border-white/10"
+                    className="bg-background border-border"
                   />
                 </div>
               </div>
@@ -150,26 +150,26 @@ export default function Profile() {
 
       {/* Favorites Section */}
       <div className="mt-12">
-        <h2 className="text-2xl font-heading font-bold text-white mb-6 flex items-center gap-2">
+        <h2 className="text-2xl font-heading font-bold text-foreground mb-6 flex items-center gap-2">
           <Heart className="h-6 w-6 text-primary fill-current" /> My Favorites
         </h2>
         
         <Tabs defaultValue="workouts" className="w-full">
-          <TabsList className="bg-white/5 border border-white/10 w-full md:w-auto p-1 mb-6">
+          <TabsList className="bg-muted border border-border w-full md:w-auto p-1 mb-6">
             <TabsTrigger value="workouts" className="flex-1 md:flex-none px-8 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">Workouts ({favWorkouts.length})</TabsTrigger>
             <TabsTrigger value="meals" className="flex-1 md:flex-none px-8 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">Meal Plans ({favMeals.length})</TabsTrigger>
           </TabsList>
 
           <TabsContent value="workouts">
             {favoritedWorkoutsList.length === 0 ? (
-              <div className="text-center py-12 border border-dashed border-white/10 rounded-xl">
+              <div className="text-center py-12 border border-dashed border-border rounded-xl">
                 <Heart className="h-12 w-12 text-muted-foreground mx-auto mb-4 opacity-20" />
                 <p className="text-muted-foreground">No favorite workouts yet.</p>
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {favoritedWorkoutsList.map(workout => (
-                  <Card key={workout.id} className="border-white/5 bg-card overflow-hidden group">
+                  <Card key={workout.id} className="border-border bg-card overflow-hidden group">
                     <div className="relative h-32">
                       <img 
                         src={workout.thumbnail} 
@@ -187,7 +187,7 @@ export default function Profile() {
                       </Button>
                     </div>
                     <CardContent className="p-4">
-                      <h4 className="font-bold text-white line-clamp-1 mb-1">{workout.title}</h4>
+                      <h4 className="font-bold text-foreground line-clamp-1 mb-1">{workout.title}</h4>
                       <div className="flex items-center gap-2 text-xs text-muted-foreground">
                         <Badge variant="secondary" className="text-[10px] h-5">{workout.category}</Badge>
                         <span>{workout.durationMin} min</span>
@@ -201,14 +201,14 @@ export default function Profile() {
 
           <TabsContent value="meals">
             {favoritedMealsList.length === 0 ? (
-              <div className="text-center py-12 border border-dashed border-white/10 rounded-xl">
+              <div className="text-center py-12 border border-dashed border-border rounded-xl">
                 <Heart className="h-12 w-12 text-muted-foreground mx-auto mb-4 opacity-20" />
                 <p className="text-muted-foreground">No favorite meals yet.</p>
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {favoritedMealsList.map(meal => (
-                  <Card key={meal.id} className="border-white/5 bg-card overflow-hidden group">
+                  <Card key={meal.id} className="border-border bg-card overflow-hidden group">
                     <div className="relative h-32">
                       <img 
                         src={meal.image} 
@@ -226,7 +226,7 @@ export default function Profile() {
                       </Button>
                     </div>
                     <CardContent className="p-4">
-                      <h4 className="font-bold text-white line-clamp-1 mb-1">{meal.title}</h4>
+                      <h4 className="font-bold text-foreground line-clamp-1 mb-1">{meal.title}</h4>
                       <div className="flex items-center gap-2 text-xs text-muted-foreground">
                         <Badge variant="secondary" className="text-[10px] h-5">{meal.category}</Badge>
                         <span>{meal.calories} kcal</span>

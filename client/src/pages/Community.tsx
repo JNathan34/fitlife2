@@ -40,12 +40,12 @@ export default function Community() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-4xl font-heading font-bold text-white mb-2">Community</h1>
+        <h1 className="text-4xl font-heading font-bold text-foreground mb-2">Community</h1>
         <p className="text-muted-foreground">Connect with friends and book top-tier trainers.</p>
       </div>
 
       <Tabs defaultValue="trainers" className="w-full">
-        <TabsList className="bg-white/5 border border-white/10 p-1">
+        <TabsList className="bg-muted border border-border p-1">
           <TabsTrigger value="trainers" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">Find Trainers</TabsTrigger>
           <TabsTrigger value="friends" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">Find Friends</TabsTrigger>
           <TabsTrigger value="bookings" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">My Bookings</TabsTrigger>
@@ -54,13 +54,13 @@ export default function Community() {
         <TabsContent value="trainers" className="mt-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {TRAINERS.map((trainer) => (
-              <Card key={trainer.id} className="bg-card border-white/5 hover:border-primary/30 transition-all">
+              <Card key={trainer.id} className="bg-card border-border hover:border-primary/30 transition-all">
                 <CardContent className="p-6 flex flex-col items-center text-center">
                    <div className="h-24 w-24 rounded-full overflow-hidden mb-4 border-2 border-primary">
                      <img src={trainer.avatar} alt={trainer.name} className="w-full h-full object-cover" />
                    </div>
-                   <h3 className="text-xl font-bold text-white">{trainer.name}</h3>
-                   <div className="flex items-center gap-1 text-yellow-400 my-1">
+                   <h3 className="text-xl font-bold text-foreground">{trainer.name}</h3>
+                   <div className="flex items-center gap-1 text-yellow-500 my-1">
                      <Star className="h-4 w-4 fill-current" />
                      <span className="font-bold">{trainer.rating.toFixed(1)}</span>
                      <span className="text-muted-foreground text-xs">({trainer.reviewsCount} reviews)</span>
@@ -72,8 +72,8 @@ export default function Community() {
                    </div>
                    <p className="text-sm text-muted-foreground line-clamp-2 mb-4">{trainer.bio}</p>
                    <div className="mt-auto w-full">
-                     <p className="text-xl font-bold text-white mb-3">${trainer.rate}<span className="text-sm text-muted-foreground font-normal">/hr</span></p>
-                     <Button className="w-full bg-white text-black hover:bg-white/90" onClick={() => setSelectedTrainer(trainer)}>
+                     <p className="text-xl font-bold text-foreground mb-3">${trainer.rate}<span className="text-sm text-muted-foreground font-normal">/hr</span></p>
+                     <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90" onClick={() => setSelectedTrainer(trainer)}>
                        View Profile
                      </Button>
                    </div>
@@ -86,14 +86,14 @@ export default function Community() {
         <TabsContent value="friends" className="mt-6">
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {FRIENDS.map((friend) => (
-              <Card key={friend.id} className="bg-card border-white/5">
+              <Card key={friend.id} className="bg-card border-border">
                 <CardContent className="p-4 flex items-center gap-4">
                   <div className="relative">
                     <img src={friend.avatar} alt={friend.name} className="h-12 w-12 rounded-full bg-zinc-800" />
                     {friend.online && <div className="absolute bottom-0 right-0 h-3 w-3 bg-green-500 rounded-full border-2 border-card" />}
                   </div>
                   <div className="flex-1">
-                    <h4 className="font-bold text-white">{friend.name}</h4>
+                    <h4 className="font-bold text-foreground">{friend.name}</h4>
                     <p className="text-xs text-muted-foreground line-clamp-1">{friend.interests.join(", ")}</p>
                   </div>
                   <Button size="icon" variant="ghost" onClick={() => addFriend(friend.id)} disabled={friends.includes(friend.id)}>
@@ -111,10 +111,10 @@ export default function Community() {
           ) : (
             <div className="space-y-4">
               {bookings.map((booking) => (
-                <Card key={booking.id} className="bg-card border-white/5">
+                <Card key={booking.id} className="bg-card border-border">
                   <CardContent className="p-4 flex items-center justify-between">
                     <div>
-                      <h4 className="font-bold text-white text-lg">Session with {booking.trainerName}</h4>
+                      <h4 className="font-bold text-foreground text-lg">Session with {booking.trainerName}</h4>
                       <div className="flex gap-4 text-sm text-muted-foreground mt-1">
                         <span className="flex items-center gap-1"><Calendar className="h-4 w-4" /> {new Date(booking.date).toLocaleDateString()}</span>
                         <span>{booking.time}</span>
@@ -131,7 +131,7 @@ export default function Community() {
 
       {/* Trainer Modal */}
       <Dialog open={!!selectedTrainer} onOpenChange={(open) => !open && setSelectedTrainer(null)}>
-        <DialogContent className="bg-card border-white/10 text-white">
+        <DialogContent className="bg-card border-border text-foreground">
           {selectedTrainer && (
             <>
               <DialogHeader>
@@ -144,7 +144,7 @@ export default function Community() {
                 </div>
               </DialogHeader>
               <div className="space-y-4">
-                <p className="text-gray-300">{selectedTrainer.bio}</p>
+                <p className="text-muted-foreground">{selectedTrainer.bio}</p>
                 <div>
                   <h4 className="font-bold mb-2">Certifications</h4>
                   <div className="flex gap-2">
