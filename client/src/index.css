@@ -106,42 +106,42 @@
 
 /* LIGHT MODE */
 .light {
-  --background: 210 20% 96%; /* Slightly darker light grey to contrast with white cards */
-  --foreground: 220 15% 10%;
+  --background: 210 20% 98%; /* Lighter background for better contrast */
+  --foreground: 220 15% 5%; /* Almost black for main text */
   
   --card: 0 0% 100%;
-  --card-foreground: 220 15% 10%;
+  --card-foreground: 220 15% 5%;
   
   --popover: 0 0% 100%;
-  --popover-foreground: 220 15% 10%;
+  --popover-foreground: 220 15% 5%;
   
-  --primary: 84 81% 35%; /* Darker Lime for better contrast on white */
+  --primary: 84 81% 30%; /* Even darker Lime for strong contrast */
   --primary-foreground: 0 0% 100%;
   
-  --secondary: 220 14% 90%;
-  --secondary-foreground: 220 15% 10%;
+  --secondary: 220 14% 92%;
+  --secondary-foreground: 220 15% 5%;
   
-  --muted: 220 14% 90%;
-  --muted-foreground: 220 15% 40%;
+  --muted: 220 14% 92%;
+  --muted-foreground: 220 15% 30%; /* Darker grey for muted text */
   
-  --accent: 220 14% 90%;
-  --accent-foreground: 220 15% 10%;
+  --accent: 220 14% 92%;
+  --accent-foreground: 220 15% 5%;
   
-  --destructive: 0 84% 60%;
-  --destructive-foreground: 210 20% 98%;
+  --destructive: 0 84% 50%;
+  --destructive-foreground: 0 0% 100%;
   
-  --border: 220 13% 80%; /* Darker border for better definition */
-  --input: 220 13% 80%;
-  --ring: 84 81% 40%;
+  --border: 220 15% 70%; /* Much darker border for defined outlines */
+  --input: 220 15% 70%;
+  --ring: 84 81% 30%;
 
   --sidebar: 0 0% 100%;
-  --sidebar-foreground: 220 15% 10%;
-  --sidebar-primary: 84 81% 40%;
+  --sidebar-foreground: 220 15% 5%;
+  --sidebar-primary: 84 81% 30%;
   --sidebar-primary-foreground: 0 0% 100%;
-  --sidebar-accent: 220 14% 90%;
-  --sidebar-accent-foreground: 220 15% 10%;
-  --sidebar-border: 220 13% 80%;
-  --sidebar-ring: 84 81% 40%;
+  --sidebar-accent: 220 14% 92%;
+  --sidebar-accent-foreground: 220 15% 5%;
+  --sidebar-border: 220 15% 70%;
+  --sidebar-ring: 84 81% 30%;
 }
 
 @layer base {
