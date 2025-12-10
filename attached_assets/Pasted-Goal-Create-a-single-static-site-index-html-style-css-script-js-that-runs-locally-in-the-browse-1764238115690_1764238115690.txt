@@ -1,0 +1,363 @@
+Goal: Create a single static site (index.html, style.css, script.js) that runs locally in the browser (file://). No Node, no servers, no external JSON files. All data lives in script.js as JavaScript arrays/objects and in localStorage. The images/ folder is present in the same directory and contains meal and avatar images; use those images by filename.
+
+Project structure (required)
+/project-root
+  /images                ← user-provided images (meal images, workout thumbnails, avatars, trainer images)
+  index.html
+  style.css
+  script.js
+
+
+Important: All image references must point to /images/<filename> (relative: images/...) and code must gracefully fall back to a placeholder if an image is missing.
+
+Deliverables (exact)
+
+index.html — semantic HTML with all sections and containers referenced by IDs and classes used in script.js. Include ARIA and alt text placeholders.
+
+style.css — responsive styling, dark mode support, accessible colors, card grid layouts, modal styles, animations, and mobile-first design.
+
+script.js — all site logic:
+
+Inline data arrays (workouts, meals, challenges, friends, trainers)
+
+Rendering functions to build DOM content
+
+Event listeners and handlers
+
+localStorage read/write with clear key names
+
+Modal and form handling
+
+Charts (Canvas API) for tracker
+
+All features below
+
+Global requirements & user experience
+
+The site must run completely offline (except optional YouTube embeds). No fetch() to remote servers.
+
+Use clear localStorage keys (see keys section).
+
+Use progressive enhancement & accessibility (keyboard navigation, ARIA roles, alt attributes).
+
+All interactive elements (buttons, form controls) must be usable via keyboard and announced to screen readers.
+
+All code must be vanilla JS (ES6+), modular functions, no frameworks.
+
+Data model (examples — include at least the counts given)
+
+Put these arrays directly in script.js. Use unique numeric id values.
+
+Workouts (≥ 20)
+const WORKOUTS = [
+  {
+    id: 1,
+    title: "Full Body HIIT",
+    category: "HIIT",
+    difficulty: "Intermediate",
+    durationMin: 20,
+    equipment: "Bodyweight",
+    muscles: ["Full body"],
+    thumbnail: "images/workout-1.jpg", // must exist
+    videoUrl: "", // optional YouTube URL or empty
+    description: "High-intensity interval session that targets full body. 6 rounds: 40s work / 20s rest.",
+    caloriesEstimate: 250
+  },
+  // ... add 19+ more
+];
+
+Meal plans / recipes (≥ 30)
+const MEALS = [
+  {
+    id: 1,
+    title: "Protein Oatmeal Bowl",
+    category: "Breakfast",
+    tags: ["high-protein"],
+    image: "images/meal-1.jpg",
+    calories: 420,
+    macros: { protein: 30, carbs: 50, fat: 10 },
+    prepTimeMin: 5,
+    cookTimeMin: 5,
+    difficulty: "Easy",
+    ingredients: ["50g oats", "1 scoop protein", "200ml milk", "banana"],
+    steps: ["Mix oats and milk", "Cook 2-3 minutes", "Stir in protein", "Top with banana"]
+  },
+  // ... add 29+ more
+];
+
+Challenges (must be interactive + local)
+
+Design at least 6 challenges (e.g., 30-day push-up, 7-day hydration, 14-day yoga). Structure:
+
+const CHALLENGES = [
+  {
+    id: "pushup-30",
+    title: "30-Day Push-Up Challenge",
+    durationDays: 30,
+    startInstruction: "Start with 5 push-ups, increase gradually each day.",
+    dailyPlan: [5,6,7,8,...], // array of length 30 with daily reps or instructions
+    image: "images/challenge-pushup.jpg"
+  },
+  // ...
+];
+
+Friends (10 AI fillers) and Trainers (10)
+
+Create arrays of 10 objects each with id, name, bio, avatar, interests/specialties, and for trainers rate, certifications, specialties, sampleAvailability.
+
+const FRIENDS = [...10 objects...];
+const TRAINERS = [...10 objects...];
+
+localStorage keys (exact names)
+
+fw_user_profile — object with name, about, avatarDataUrl
+
+fw_favorites_workouts — Array<number> of workout ids
+
+fw_favorites_meals — Array<number> of meal ids
+
+fw_challenge_progress — object keyed by challenge id containing progress state (startDate, dayCompleted[], streak)
+
+fw_tracker_data — object for daily steps, weight history, water logs, workouts logged
+
+fw_friends — array of friend suggestions / connections (persist adds)
+
+fw_bookings — array of trainer booking objects
+
+fw_reviews — (if implemented) array of reviews
+
+Scripts must check for existing data and initialize defaults if absent.
+
+Feature details (functionality you asked for)
+1) Make Challenges work locally (full behavior)
+
+UI: Challenge list page with cards (image, title, duration, start button). Clicking a challenge opens a modal with:
+
+challenge overview
+
+progress bar (days completed / total)
+
+day-by-day list with checkboxes to mark completion
+
+Previous/Next day navigation
+
+“Reset challenge” button and “Complete Day” button
+
+Persistence: When user marks a day complete, update fw_challenge_progress[challengeId]:
+
+fw_challenge_progress = {
+  "pushup-30": { startDate: "2025-11-27", completedDays: [1,2,3], streak: 3 }
+}
+
+
+Progress visualization: Show percent complete, circular progress (SVG or canvas), and longest streak.
+
+Notifications: Optional daily reminder via local browser alert (user has to click allow in session); store preference on profile.
+
+Reset/Abandon: "Reset challenge" clears progress for that challenge in localStorage with confirmation.
+
+2) Use the images folder for meal plans
+
+Meal objects image property must reference images/<filename>.jpg (or png).
+
+If image not found, show images/placeholder-meal.jpg.
+
+Provide lazy-loading loading="lazy" for large images.
+
+On the meal list page show grid cards with title, short macro summary, and click to open modal for full recipe (ingredients + steps + calorie/macros + "Add to favorites" + "Add to weekly planner" buttons).
+
+3) Favorites system for both workouts & meals
+
+Each workout/meal card contains a heart icon button.
+
+Clicking toggles favorite state:
+
+add id to fw_favorites_workouts or fw_favorites_meals
+
+update UI instantly (heart filled)
+
+show toast "Added to favorites" or "Removed"
+
+Add dedicated "Favorites" view that shows favorited items, with quick access.
+
+4) Profile section (editable, local)
+
+Profile page with:
+
+Display name
+
+About text (editable textarea)
+
+Profile picture (file input, save as DataURL into fw_user_profile.avatarDataUrl)
+
+"Save profile" button
+
+Allow changing avatar via:
+
+File input that reads file with FileReader and stores data:image/png;base64... in localStorage
+
+Also allow selecting from preloaded avatar images in /images/avatars/*
+
+Display profile summary in navbar with avatar & name.
+
+All saved locally.
+
+5) Workout & Meal details modals
+
+Clicking a workout card:
+
+Opens modal with: Title, difficulty, duration, equipment, targeted muscles, thumbnail (full size), description, calories estimate, "Play Video" if videoUrl present (embed or open in modal iframe), "Add to favorites", "Log workout" button (adds entry in fw_tracker_data).
+
+Clicking a meal card:
+
+Opens modal showing full recipe (ingredients, steps), macros, calorie info, image, "Add to favorites" & "Add to meal planner for day X".
+
+Ensure modals are accessible (focus trap, ESC close, ARIA roles).
+
+6) Tracker section — improve and add features
+
+Replace "bland" tracker with a dashboard that includes:
+
+Summary cards: Steps today, Calories burned today, Water intake, Workouts this week, Weekly calories, Current streak
+
+Interactive charts using Canvas: Weight history (line), Steps (bar chart by day), Water intake (bar)
+
+Log inputs: Quick forms to add steps, add weight, add water glasses, log a workout (choose workout id)
+
+Achievements: Badge unlocks for milestones (e.g., 10k steps in a day, 7-day streak). Badges shown with tooltip and date unlocked.
+
+Export/Import: Buttons to export fw_tracker_data as JSON downloadable file and import to restore.
+
+Weekly summary & predictions: Basic projection of weekly steps based on current progress.
+
+Use localStorage fw_tracker_data structure:
+
+fw_tracker_data = {
+  "2025-11-27": { steps: 8000, weight: 82.4, water: 2.5, workoutsLogged: [1,4] },
+  "2025-11-26": { ... }
+}
+
+7) Find Friends (10 AI friends preloaded)
+
+Preload 10 friend objects in FRIENDS array.
+
+UI: A "Find Friends" card grid with avatar, name, interests, short bio, and "Add friend" button.
+
+Clicking "Add friend" toggles to "Friends" and stores in fw_friends localStorage key.
+
+Optionally show mutual interest highlighting: mark matches based on user's favorite workouts or tags.
+
+Provide a "Message (demo)" button that opens a local-only chat modal to send messages (stored in localStorage per friend).
+
+8) Find Trainers (10 trainers preloaded)
+
+TRAINERS array with trainer objects: id, name, avatar, certifications, specialities, hourlyRate, rating, sampleReviews, availabilitySlots (dates).
+
+UI: Trainer listings with filters (specialty, max rate, rating) and "Book session" button.
+
+Bookings stored in fw_bookings. Booking flow: pick slot, enter name & notes, confirm, store booking locally, add to profile's "My Bookings".
+
+Provide "Trainer profile" modal with detailed bio, specialties, certifications, and sample 1-week plan example.
+
+9) Other UX polish
+
+Toast notifications for actions (favorite added, profile saved, challenge day completed).
+
+Smooth animations for adding/removing favorites.
+
+Graceful offline-only warnings where external content would be used (e.g., YouTube).
+
+Search boxes for workouts and meals (live filter).
+
+Pagination or infinite load for long lists.
+
+Implementation details (technical)
+
+Render lists via JS templating functions that create DOM nodes and innerHTML sanitized.
+
+Use event delegation for list click handlers.
+
+Modal implementation:
+
+append modal element to document.body
+
+trap focus inside modal
+
+ESC closes modal
+
+Favorite toggle function signature:
+
+function toggleFavorite(type, id) // type: 'workout'|'meal'
+
+
+localStorage helper:
+
+function lsGet(key, defaultVal) { /* parse JSON or return default */ }
+function lsSet(key, value) { /* stringify and store */ }
+
+
+Charts: Use Canvas 2D API — small helper functions to draw bars/lines; no external libs.
+
+File input to DataURL: use FileReader.readAsDataURL(file) then store string in fw_user_profile.avatarDataUrl.
+
+Image naming & usage policy
+
+Meal images: images/meal-1.jpg, images/meal-2.jpg, ... matching MEALS ids. If user provided names differ, the code should attempt to find images/meal-${id}.jpg then fallback to images/placeholder-meal.jpg.
+
+Workout thumbnails: images/workout-1.jpg, …
+
+Avatars: images/avatar-1.jpg … or fallback images/avatar-placeholder.png
+
+Trainer images: images/trainer-1.jpg, …
+
+Use loading="lazy" on <img> tags for performance.
+
+Testing checklist (must pass)
+
+Open index.html via file:// — site loads with no server errors.
+
+Click a workout opens accessible modal with details and favorite button works and persists after refresh.
+
+Click a meal opens recipe modal; favorites persist.
+
+Profile: change name, about, upload new avatar — persists and shows in navbar.
+
+Challenges: start a challenge, mark daily completions, progress persists and updates UI / circular progress.
+
+Tracker: add steps, weight, water; charts update and data persists.
+
+Favorites page shows all favorites and allows removal.
+
+Find Friends: add 1–2 friends; changes persist.
+
+Find Trainers: book a trainer slot; booking saved to fw_bookings.
+
+Export tracker data and import restore works.
+
+All modals close with ESC and are keyboard-accessible.
+
+No external network requests required for core functionality.
+
+Deliverable formatting instructions for the generator
+
+Produce only the 3 files: index.html, style.css, and script.js with comments.
+
+Put all sample data in script.js — do not create extra JSON files.
+
+Keep file sizes reasonable; use small inline SVG icons rather than remote icon fonts.
+
+Write clear inline comments in script.js explaining functions and localStorage shape.
+
+Include sample text for 20 workouts, 30 meals, 6+ challenges, 10 friends and 10 trainers (these can be stubbed but must be real-looking entries).
+
+Make sure all relative image paths point to images/<name> so your local images folder is used.
+
+Extra (optional but recommended)
+
+Add a small README (displayed as a popup or comment in script.js) explaining how to add more images and the naming convention.
+
+Add a data-sync toggle that can export the whole site state as JSON (download) so user can share profiles between devices.
+
+Final note to the generator / developer
+
+Make the UI feel polished and real — animations, toasts, small microinteractions — but ensure it stays fast and accessible. Everything must be testable with local files only and persist to localStorage. If any external content (like embed videos) is used, provide a local fallback (thumbnail + textual steps).

@@ -1,0 +1,163 @@
+Make the following specific changes and additions to my current fitness website. Do not rebuild the site — only extend and modify what already exists.
+
+1. Add a Meal Plan Sidebar (Left Side of Screen)
+Layout & Position
+
+Create a fixed left sidebar dedicated to Meal Plans.
+
+The sidebar must remain visible at all times, even when scrolling.
+
+Width should be around 250–300px (responsive on smaller screens).
+
+Meal Content Requirements
+
+For each meal category (Breakfast, Lunch, Dinner, Snacks):
+
+Add a unique high-quality image for every meal.
+
+Add:
+
+Meal name
+
+A short description
+
+Ingredients list
+
+A full step-by-step cooking guide (5–8 steps per meal)
+
+Approximate calories
+
+Functionality
+
+Add a "Shuffle Meals" button at the bottom of the sidebar.
+
+When pressed:
+
+Replace all meals with completely different meals.
+
+Images should update accordingly.
+
+Content should fade-in or smoothly animate.
+
+Responsiveness
+
+On mobile/tablet:
+
+The sidebar should collapse into a dropdown or slide-out panel.
+
+2. Upgrade ALL Workouts (Main Section)
+Workout Requirements
+
+Every workout card must include:
+
+A different picture (no repeats).
+
+A unique workout name.
+
+A detailed description of what muscles it targets.
+
+6–10 step instructions on how to perform the movement safely.
+
+A tip section (e.g., form tips, common mistakes).
+
+Animation/Interaction
+
+When switching workouts, use:
+
+Smooth fade-in
+
+Slide-up
+
+Or card-flip animation (your choice)
+
+Randomizer (Optional but Recommended)
+
+Add a "Random Workout" or "Generate New Workout" button.
+
+This should pull a completely new workout card with new content and image.
+
+3. Profile Section Update (Right Side Panel)
+Theme Toggle
+
+Add a Light/Dark mode toggle inside the Profile panel.
+
+The toggle should:
+
+Be a switch button or icon-based toggle (sun/moon).
+
+Instantly update the entire website theme.
+
+Theme Appearance Changes
+
+When changing themes, update:
+
+Background colors (global page background)
+
+Text colors (headers, paragraphs, labels, buttons)
+
+Card backgrounds (workout cards, meal cards, profile card)
+
+Sidebar background
+
+Navigation elements
+
+Shadows + borders
+
+Button colors + hover states
+
+Input fields (if any)
+
+localStorage Feature
+
+Save the user’s selected theme into localStorage.
+
+On page load, automatically apply the stored theme.
+
+Profile UI Improvements
+
+Keep your current layout but ensure the toggle fits neatly.
+
+Add subtle animation when switching modes (0.3–0.5s transition).
+
+4. General UI & Functionality Improvements
+Animations
+
+Fade-in effects for images
+
+Smooth transitions between light/dark mode
+
+Hover effects on all cards
+
+Smooth transitions when new meals/workouts load
+
+Responsiveness
+
+Entire layout must remain responsive on:
+
+Phone
+
+Tablet
+
+Desktop
+
+Sidebar and profile panel should become collapsible on smaller screens.
+
+Styling Consistency
+
+Use consistent border-radius, shadows, spacing, and font sizes.
+
+Ensure the theme toggle adjusts the meal sidebar and workout section too.
+
+5. Do NOT Remove or Change Existing Structure
+
+Keep the current layout exactly as it is.
+
+Only add:
+
+The meal plan sidebar
+
+The upgraded workout cards
+
+The theme toggle
+
+All additions must integrate cleanly with existing code.

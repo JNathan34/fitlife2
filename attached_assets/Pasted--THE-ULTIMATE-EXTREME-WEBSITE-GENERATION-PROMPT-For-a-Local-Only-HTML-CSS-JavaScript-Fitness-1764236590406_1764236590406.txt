@@ -1,0 +1,660 @@
+🚀 THE ULTIMATE EXTREME WEBSITE GENERATION PROMPT
+
+(For a Local-Only HTML + CSS + JavaScript Fitness Website)
+
+Copy/paste this into an AI generator — or tell me and I’ll generate the full code for you.
+
+🧱 BASE REQUIREMENTS
+
+Must be built ONLY using HTML, CSS, and Vanilla JavaScript
+
+Must work fully offline on a local browser
+
+Must NOT use Node.js, PHP, Python, React, Vue, Angular, Tailwind, Bootstrap, or any backend tech
+
+Must use index.html, style.css, script.js
+
+🏋️‍♀️ CLIENT: Fitness & Wellness UK
+
+Your job is to build a massive professional fitness & wellness platform containing:
+
+Workouts
+
+Meal plans
+
+Sleep coaching
+
+Activity tracking
+
+Wellness tools
+
+Motivational systems
+
+Calculators
+
+Reviews
+
+Interactive tools
+
+Learning resources
+
+Challenges
+
+This should look like a premium fitness subscription service, but running entirely offline.
+
+🌐 WEBSITE PAGES / SECTIONS REQUIRED (30 SECTIONS TOTAL)
+
+Below is the EXTREMELY expanded structure.
+
+1️⃣ Home / Landing Page
+
+Massive full-screen hero image
+
+Animated tagline
+
+Button group: “Start Workout”, “Browse Meals”, “Track Progress”, “View Challenges”
+
+Smooth parallax scrolling
+
+Quick-stats counters
+
+Daily motivation widget
+
+Random workout generator preview
+
+Preview cards linking to all major sections
+
+2️⃣ Workout Videos Library (20+ required, but more recommended)
+
+Must include:
+
+25+ video blocks
+
+Category filters (HIIT, Strength, Cardio, Yoga, Pilates, Mobility, Warmup, Cooldown)
+
+Difficulty filters
+
+Equipment filters
+
+"Random workout" button
+
+Video modal viewer
+
+“Add to favourites” button (saved in localStorage)
+
+Recently watched section (localStorage)
+
+Save for later
+
+Each video must include:
+
+Name
+
+Duration
+
+Equipment
+
+Calories burned estimate
+
+Muscle groups targeted
+
+Difficulty
+
+Description
+
+3️⃣ Exercise Tips (20–40)
+
+Each tip card must include:
+
+Icon
+
+Tip title
+
+Explanation paragraph
+
+“Common mistakes” list
+
+“How to improve” explanation
+
+Example exercises
+
+Categories:
+
+Form
+
+Breathing
+
+Strength
+
+Cardio
+
+Flexibility
+
+Injury prevention
+
+4️⃣ Meal Plans / Recipes (30+ total)
+
+Must include filtering:
+
+Breakfast
+
+Lunch
+
+Dinner
+
+High-protein
+
+Vegan
+
+Low calorie
+
+10-minute meals
+
+Budget meals
+
+Each recipe needs:
+
+Title
+
+Image
+
+Ingredients
+
+Steps
+
+Prep time
+
+Cook time
+
+Calories
+
+Macros (Protein / Carbs / Fats)
+
+Difficulty level
+
+Allergens
+
+Related recipes
+
+5️⃣ Recipe Search Engine
+
+JavaScript search system that searches:
+
+Title
+
+Ingredients
+
+Category
+
+Instant live filtering.
+
+6️⃣ Weekly Meal Planner Tool
+
+Users can:
+
+Drag and drop recipes into days of the week
+
+Save their weekly plan (localStorage)
+
+Export plan as text
+
+7️⃣ Wellness Tips (30+)
+
+Topics:
+
+Stress management
+
+Self-care
+
+Mental health
+
+Journaling
+
+Meditation
+
+Digital detox
+
+Daily routines
+
+Breathing techniques
+
+Reducing anxiety
+
+Setting goals
+
+Work-life balance
+
+Stretching routines
+
+8️⃣ Motivation Hub
+
+Contains:
+
+Motivational quotes carousel (20–40 quotes)
+
+Video backgrounds
+
+Weekly challenges
+
+Daily affirmations
+
+“Spin the wheel of motivation” (JS mini-game)
+
+Achievement badges
+
+9️⃣ Sleep & Recovery Center
+
+Includes:
+
+Sleep hygiene guides
+
+Pre-bed stretches
+
+Meditation audio
+
+Light vs deep sleep education
+
+Circadian rhythm info
+
+Sleep cycle calculator
+
+Rest day planner
+
+Recovery timeline chart
+
+🔟 Hydration & Nutrition Education
+
+Water intake calculator
+
+Hydration reminders
+
+Mineral/electrolyte guide
+
+Hydration facts
+
+“Track your water today” feature (localStorage)
+
+Sugar guide
+
+Fiber & digestion education
+
+Vitamins & minerals list
+
+Supplement safety warnings
+
+1️⃣1️⃣ Calorie Calculator
+
+Inputs:
+
+Age
+
+Gender
+
+Height
+
+Weight
+
+Activity level
+
+Outputs:
+
+BMR
+
+Maintenance
+
+Cutting calories
+
+Bulking calories
+
+1️⃣2️⃣ BMI Calculator
+
+Outputs:
+
+BMI score
+
+Category
+
+Health explanation
+
+Recommendations
+
+1️⃣3️⃣ Water Intake Calculator
+
+Includes:
+
+Custom hydration goal
+
+Reminder timer (local JS alert)
+
+1️⃣4️⃣ Body Fat Percentage Estimator
+
+Uses U.S. Navy body fat formula.
+Inputs:
+
+Height
+
+Waist
+
+Neck
+
+Hip (women)
+
+1️⃣5️⃣ Steps & Activity Tracker
+
+Features:
+
+Add daily steps
+
+Add workouts completed
+
+Add calories burned
+
+Weekly progress graph (Canvas API)
+
+LocalStorage save
+
+Achievement badges
+
+“Longest streak” tracker
+
+1️⃣6️⃣ Fitness Progress Journal
+
+Users can write:
+
+Daily entry
+
+Mood
+
+Energy level
+
+Meals eaten
+
+Workouts completed
+
+Notes
+
+Stored in localStorage.
+Editable & deletable.
+
+1️⃣7️⃣ Before & After Progress Photos (Local Only)
+
+Users can upload images locally:
+
+Stored in localStorage
+
+No cloud storage
+
+Editable captions
+
+1️⃣8️⃣ 7-Day Fitness Program Generator
+
+User chooses:
+
+Goal (Lose weight / Build muscle / Tone / Improve stamina)
+
+Equipment available
+
+Experience level
+
+Outputs a full 7-day plan with:
+
+Warm-up
+
+Main workout
+
+Cool-down
+
+Tips
+
+Optional bonus exercise
+
+1️⃣9️⃣ Workout Stopwatch / Timer
+
+Includes:
+
+Stopwatch
+
+Countdown timer
+
+Interval timer (HIIT)
+
+Sounds (simple HTML audio)
+
+2️⃣0️⃣ Habit Tracker
+
+Users can track habits such as:
+
+Drink water
+
+Exercise
+
+Sleep early
+
+Eat healthy
+
+Stretch
+
+Meditate
+
+Features:
+
+Daily checkboxes
+
+Monthly calendar view
+
+Streak tracker
+
+LocalStorage
+
+2️⃣1️⃣ Fitness Challenges Section
+
+Challenges include:
+
+30-day push-up challenge
+
+10k steps challenge
+
+Plank challenge
+
+water challenge
+
+30-day yoga challenge
+
+Each challenge has:
+
+Calendar view
+
+Daily instructions
+
+Reset button
+
+2️⃣2️⃣ Interactive Quizzes
+
+Add 4–6 fitness quizzes:
+
+Nutrition quiz
+
+Exercise knowledge quiz
+
+Myth-buster quiz
+
+Wellness quiz
+
+Each quiz:
+
+10+ questions
+
+Score at end
+
+Motivational message
+
+2️⃣3️⃣ Reviews Section (Expanded Further)
+
+Preloaded reviews: 15–20
+User reviews include:
+
+Name
+
+Rating
+
+Review
+
+Date
+
+Profile picture (optional)
+
+Features:
+
+Sort by rating
+
+Sort by newest
+
+Filter by stars
+
+LocalStorage saved
+
+Edit review
+
+Delete review
+
+2️⃣4️⃣ FAQ Page
+
+40–50 fitness/wellness questions including:
+
+Diet
+
+Sleep
+
+Exercise
+
+Motivation
+
+Hydration
+
+Myths
+
+2️⃣5️⃣ About Us Page
+
+Include:
+
+Mission
+
+Vision
+
+Team placeholder
+
+Brand values
+
+Fitness & Wellness UK story
+
+2️⃣6️⃣ Contact Page
+
+Form includes:
+
+Name
+
+Email
+
+Message
+Fake-submit alert only.
+
+2️⃣7️⃣ Dark Mode
+
+Toggle stored in localStorage.
+Transitions must be animated.
+
+2️⃣8️⃣ Custom Icons / Badges
+
+Create internal badges for:
+
+Hydration master
+
+Workout warrior
+
+Recipe explorer
+
+Consistency king
+
+Motivation master
+
+2️⃣9️⃣ Accessibility Requirements
+
+Must include:
+
+High contrast mode
+
+Alt text on all images
+
+Keyboard-navigable menus
+
+Readable fonts
+
+ARIA tags
+
+3️⃣0️⃣ Footer
+
+Include:
+
+Social icons
+
+Email link
+
+Quick links
+
+Copyright
+
+“Made for Fitness & Wellness UK”
+
+🎨 Design System Requirements
+
+Modern minimal UI
+
+Green + white + black palette
+
+Optional dark theme
+
+Smooth hover animations
+
+Card shadows
+
+Rounded corners
+
+SVG icons
+
+Responsive grid
+
+Flexbox layout
+
+Parallax scrolling on homepage
+
+Scroll animations (fade, slide)
+
+🧠 JavaScript Requirements
+
+Everything must be done in script.js, including:
+
+Calculators
+
+Local storage systems
+
+Generators
+
+Filters
+
+Modals
+
+Timers
+
+Quizzes
+
+Graphs
+
+Streak trackers
+
+Dark mode
+
+Recipe search
+
+Workout favourites
+
+Reviews
