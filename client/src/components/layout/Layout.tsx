@@ -70,20 +70,22 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </nav>
 
       <div className="p-4 border-t border-sidebar-border mt-auto">
-        <Button
-          variant="ghost"
-          className="w-full justify-start gap-3 text-sidebar-foreground/70 hover:text-foreground hover:bg-sidebar-accent px-4"
-          onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-        >
-          {theme === "dark" ? (
-            <Sun className="h-5 w-5" />
-          ) : (
-            <Moon className="h-5 w-5" />
-          )}
-          <span className="font-medium tracking-wide">
-            {theme === "dark" ? "Light Mode" : "Dark Mode"}
-          </span>
-        </Button>
+        <div className="flex items-center justify-between px-4 py-2">
+          <div className="flex items-center gap-3 text-sidebar-foreground/70">
+            {theme === "dark" ? (
+              <Moon className="h-5 w-5" />
+            ) : (
+              <Sun className="h-5 w-5" />
+            )}
+            <span className="font-medium tracking-wide">
+              {theme === "dark" ? "Dark Mode" : "Light Mode"}
+            </span>
+          </div>
+          <Switch 
+            checked={theme === "dark"}
+            onCheckedChange={(checked) => setTheme(checked ? "dark" : "light")}
+          />
+        </div>
       </div>
     </div>
   );

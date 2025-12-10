@@ -8,6 +8,13 @@ import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 export default function Meals() {
   const [favorites, setFavorites] = useLocalStorage<number[]>("fw_favorites_meals", []);
@@ -76,30 +83,41 @@ export default function Meals() {
             </div>
           </CardHeader>
           <CardContent>
-            <ScrollArea className="w-full pb-4">
-              <div className="flex gap-4">
-                {mealPlan.map((meal) => (
-                  <div key={meal.id} className="relative group min-w-[200px] w-[200px] bg-secondary/20 rounded-lg overflow-hidden border border-white/5">
-                    <div className="h-32 w-full relative">
-                      <img src={meal.image} className="w-full h-full object-cover" alt={meal.title} />
-                      <button 
-                        onClick={() => removeFromMealPlan(meal.id)}
-                        className="absolute top-2 right-2 p-1.5 bg-black/60 hover:bg-red-500/80 rounded-full text-white transition-colors"
-                      >
-                        <Trash2 className="h-4 w-4" />
-                      </button>
-                    </div>
-                    <div className="p-3">
-                      <h4 className="font-bold text-sm truncate mb-1">{meal.title}</h4>
-                      <div className="text-xs text-muted-foreground flex justify-between">
-                        <span>{meal.calories} cal</span>
-                        <span>{meal.macros.protein}g P</span>
+            <div className="w-full px-12">
+              <Carousel
+                opts={{
+                  align: "start",
+                }}
+                className="w-full"
+              >
+                <CarouselContent>
+                  {mealPlan.map((meal) => (
+                    <CarouselItem key={meal.id} className="basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5">
+                      <div className="relative group bg-secondary/20 rounded-lg overflow-hidden border border-white/5 h-full">
+                        <div className="h-32 w-full relative">
+                          <img src={meal.image} className="w-full h-full object-cover" alt={meal.title} />
+                          <button 
+                            onClick={() => removeFromMealPlan(meal.id)}
+                            className="absolute top-2 right-2 p-1.5 bg-black/60 hover:bg-red-500/80 rounded-full text-white transition-colors"
+                          >
+                            <Trash2 className="h-4 w-4" />
+                          </button>
+                        </div>
+                        <div className="p-3">
+                          <h4 className="font-bold text-sm truncate mb-1">{meal.title}</h4>
+                          <div className="text-xs text-muted-foreground flex justify-between">
+                            <span>{meal.calories} cal</span>
+                            <span>{meal.macros.protein}g P</span>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </ScrollArea>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious className="left-[-40px]" />
+                <CarouselNext className="right-[-40px]" />
+              </Carousel>
+            </div>
           </CardContent>
         </Card>
       )}
@@ -129,7 +147,7 @@ export default function Meals() {
                  </Button>
                </div>
                <div className="absolute bottom-2 left-2">
-                 <Badge className="bg-black/60 backdrop-blur hover:bg-black/70 border-none">{meal.category}</Badge>
+                 <Badge className="bg-background/90 text-foreground backdrop-blur-md shadow-sm border border-border/50 font-bold tracking-wide">{meal.category}</Badge>
                </div>
             </div>
             <CardContent className="p-4">
