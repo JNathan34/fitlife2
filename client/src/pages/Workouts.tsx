@@ -9,7 +9,6 @@ import { Search, Clock, Flame, Dumbbell, PlayCircle, Heart, Activity, Shuffle, I
 import { useState } from "react";
 import { Dialog, DialogContent, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
-import { ScrollArea } from "@/components/ui/scroll-area";
 
 export default function Workouts() {
   const [search, setSearch] = useState("");
@@ -171,7 +170,7 @@ export default function Workouts() {
                  </div>
               </div>
               
-              <ScrollArea className="flex-1">
+              <div className="flex-1 overflow-y-auto custom-scrollbar">
                 <div className="p-6 space-y-8">
                   {/* Stats Bar */}
                   <div className="flex items-center justify-between text-sm text-muted-foreground border-b border-border pb-4">
@@ -246,7 +245,7 @@ export default function Workouts() {
                     </div>
                   </div>
                 </div>
-              </ScrollArea>
+              </div>
 
               <DialogFooter className="p-6 pt-0 pb-6 bg-card shrink-0">
                 <Button variant="outline" className="w-full border-border hover:bg-muted" onClick={() => setSelectedWorkout(null)}>Close</Button>
